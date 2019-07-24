@@ -1,14 +1,17 @@
-#PHP Running jobs#
+PHP Running jobs
+================
 
 This project aims to provide a web based process launching micro application. 
 
-##For what purpose ?##
+For what purpose ?
+------------------
 It is efficient if you are running very long jobs such as 3d rendering or machine learning training. The running jobs are stored into database so you can retrieve your jobs even several hours later. 
 The out/err content are stored in files until you delete them. 
 
 I implemented this project for my own needs, it is running on a Linux platform with MariaDB with a specific user authentication.
 
-##Installation##
+Installation
+------------
 
 Create a database and one table such as
 
@@ -27,7 +30,12 @@ CREATE TABLE `process` (
 * create a new config in your webserver (nginx?) to link the location containing the cloned repo
 * edit the .env file, especially the DB_CONNECTION, DB_HOST, DB_PORT, DB_DATABASE, DB_USERNAME, DB_PASSWORD options
 
-##Security considerations##
+Limitations
+-----------
+The created processes will be children of your webserver process. The longevity of the process may depend your php configuration. I am running php-fpm, this way the processes can run as long as the php-fpm service is alive. 
+
+Security considerations
+-----------------------
 This project may be dangerous for your webserver if the access is not correctly protected. 
 **Warning** This project does not implement user management features. If you want to protect the access to this page, feel free to implement user authentication (through php or in your web server config).
 
