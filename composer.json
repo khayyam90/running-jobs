@@ -1,0 +1,38 @@
+{
+    "name": "khayyam90/running-jobs",
+    "description": "Start long running jobs on your webserver",
+    "keywords": [],
+    "license": "MIT",
+    "type": "project",
+    "require": {
+        "php": ">=7.1.3",
+        "laravel/lumen-framework": "5.8.*",
+        "twig/twig":"^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "classmap": [
+        ],
+        "psr-4": {
+            "App\\": "app/"
+        }
+    },
+    "autoload-dev": {
+        "classmap": [
+        ]
+    },
+    "scripts": {
+        "post-root-package-install": [
+            "@php -r \"file_exists('.env') || copy('.env.example', '.env');\""
+        ]
+    },
+    "config": {
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "optimize-autoloader": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

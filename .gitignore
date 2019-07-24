@@ -1,0 +1,6 @@
+.env
+composer.lock
+storage/processes/*
+storage/cache/*
+storage/logs/*
+/vendor

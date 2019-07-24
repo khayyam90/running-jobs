@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <title>Running jobs dashbord</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+<script type="text/javascript">
+$(function(){
+	$("button[role='output']").click(function(){
+		var data = {
+			id: $(this).closest("li").attr("iid")
+		};
+		var outZone = $(this).parent().find(".outputZone");
+		$.post("/output", data, function(i){
+			outZone.text(i);
+		});
+	});
+});
+</script>
+
+<h1>Processes</h1>
+
+<ul class="list-group">
+{% for p in processes %}
+	<li class="list-group-item" iid="{{ p.get("id") }}">{{ p.get("cmd") }}
+		<button class="btn btn-default" role="output" style="float:right">Output</button>
+		<div class="outputZone"></div>
+	</li>
+{% endfor %}
+</ul>
+
+<h2>Add a process</h2>
+<form method="post" action="/start">
+	<input name="cmd" />	
+	<button type="submit" class="btn btn-primary">Validate</button>
+</form>
+
+</body>
+</html>
